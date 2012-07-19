@@ -49,7 +49,7 @@ AC_ARG_WITH([nsfw],
   [AS_HELP_STRING([--with-nsfw],
     [build with adult website support @<:@default=no@:>@])],
   [],
-  [with_nsfw=no])
+  [with_nsfw=yes])
 AM_CONDITIONAL([WITH_NSFW], [test x"$with_nsfw" != "xno"])
 
 # --with-fixme
@@ -57,7 +57,7 @@ AC_ARG_WITH([fixme],
   [AS_HELP_STRING([--with-fixme],
     [with website scripts marked as "fixme" @<:@default=no@:>@])],
   [],
-  [with_fixme=no])
+  [with_fixme=yes])
 AM_CONDITIONAL([WITH_FIXME], [test x"$with_fixme" != "xno"])
 
 # --with-nlfy
