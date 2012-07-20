@@ -55,8 +55,9 @@ function parse(self)
         end
         local found = false
         for _,kind in pairs{'limelight', 'akamai', 'level3', 'sis', 'iplayertok'} do
-            if found == false and kind == params['kind'] then
+            if kind == params['kind'] then
                 found = true
+                break
             end
         end
         if not found then return false end
