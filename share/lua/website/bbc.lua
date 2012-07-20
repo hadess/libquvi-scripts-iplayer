@@ -195,7 +195,7 @@ function parse(self)
                 params['authString'] = params['authString']:gsub('&amp;', '&')
             end
         end
-        
+
         -- in 'application', mp has a value containing one or more entries separated by strings.
         -- We only keep the first entry.
         if params.application then
