@@ -165,7 +165,6 @@ function parse(self)
             process_limelight_level3(params)
         end
 
-        params.application = params.application or 'Please report'
         params.uri = params.uri or error('Could not create RTMP URL')
 
         complete_uri = params.uri
