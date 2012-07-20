@@ -156,7 +156,8 @@ function parse(self)
 
     for connection in media:gmatch('<connection .-/>') do
         local params, complete_uri = {}, ''
-        for _,param in pairs{'supplier', 'server', 'application', 'identifier', 'authString'} do
+
+        for _,param in pairs{'supplier', 'server', 'application', 'identifier', 'authString', 'kind'} do
             _,_,params[param] = connection:find(param .. '="(.-)"')
         end
         
