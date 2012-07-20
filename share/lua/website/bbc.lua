@@ -49,6 +49,21 @@ end
 -- Parse video URL.
 function parse(self)
 
+    function needs_new_authString(params)
+        if not params['authString'] then
+            return false
+        end
+        local found = false
+        for _,kind in pairs{'limelight', 'akamai', 'level3', 'sis', 'iplayertok'} do
+            if found == false and kind == params['kind'] then
+                found = true
+            end
+        end
+        if not found then return false end
+        -- We don't need to check for the mode, we already know it's what we want
+        return true
+    end
+
     function create_uri_for_limelight_level3_iplayertok(params)
         params.uri = 'rtmp://' .. params.server .. ':1935/ondemand?_fcs_vhost='
             .. params.server .. '&auth=' .. params.authString .. '&aifp=v001&slist='
