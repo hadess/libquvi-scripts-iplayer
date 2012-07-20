@@ -123,7 +123,7 @@ function parse(self)
     local r = self.requested_format
     local preferred = ((r == 'best') and {'high', 'standard', 'low', 'vlow'})
                    or ((r == 'default') and {'standard', 'low', 'vlow', 'high'})
-                   or {r} 
+                   or {r}
 
     -- Pick the first acceptable format available
     local format
