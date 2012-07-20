@@ -218,9 +218,9 @@ function parse(self)
             .. ' app=' .. params.application
             .. ' playpath=' .. params.playpath
             .. ' swfUrl=http://www.bbc.co.uk/emp/revisions/18269_21576_10player.swf?revision=18269_21576 swfVfy=1'
-        if params.tcurl then
-            complete_uri = complete_uri .. ' tcUrl=' .. params.tcurl
-        end
+            .. ' tcUrl=' .. params.tcurl
+            .. ' pageurl=' .. self.page_url
+
         self.url[#(self.url) + 1] = complete_uri
     end
 
