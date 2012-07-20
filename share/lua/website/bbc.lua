@@ -65,9 +65,7 @@ function parse(self)
     end
 
     function create_uri_for_limelight_level3_iplayertok(params)
-        params.uri = 'rtmp://' .. params.server .. ':1935/ondemand?_fcs_vhost='
-            .. params.server .. '&auth=' .. params.authString .. '&aifp=v001&slist='
-            .. params.identifier
+        params.uri = params.tcurl .. '/' .. params.playpath
     end
 
     function process_akamai(params)
@@ -89,17 +87,17 @@ function parse(self)
     end
 
     function process_limelight_level3(params)
-        create_uri_for_limelight_level3_iplayertok(params)
-        params.application = params.application .. '&' .. params.authString
+        params.application = params.application .. '?' .. params.authString
         params.tcurl = 'rtmp://' .. params.server .. ':1935/' .. params.application
         params.playpath = params.identifier
+        create_uri_for_limelight_level3_iplayertok(params)
     end
 
     function process_iplayertok(params)
-        create_uri_for_limelight_level3_iplayertok(params)
         params.identifier = params.identifier .. '?' .. params.authString
         params.playpath = params.identifier:gsub('^mp[34]:', '')
         params.tcurl = 'rtmp://' .. params.server .. ':1935/' .. params.application
+        create_uri_for_limelight_level3_iplayertok(params)
     end
 
     self.host_id = 'bbc'
