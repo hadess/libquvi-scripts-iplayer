@@ -166,7 +166,7 @@ function parse(self)
         end
 
         params.application = params.application or 'Please report'
-        params.uri = params.uri or 'Please report'
+        params.uri = params.uri or error('Could not create RTMP URL')
 
         complete_uri = params.uri
             .. ' app=' .. params.application
