@@ -1,6 +1,6 @@
 
 -- quvi
--- Copyright (C) 2010  quvi project
+-- Copyright (C) 2011, 2012  quvi project
 --
 -- This file is part of quvi <http://quvi.googlecode.com/>.
 --
