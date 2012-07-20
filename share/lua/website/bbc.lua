@@ -20,6 +20,12 @@
 -- 02110-1301  USA
 
 
+-- TODO:
+-- - Add support for Radio programmes
+-- - Add support for live streaming
+-- - Better error messages for geolocation errors
+-- - Offer the subtitles for download somehow
+
 -- Obtained with grep -oP '(?<=service=")[^"]+(?=")' on config
 local fmt_id_lookup = {
   high     = 'iplayer_streaming_h264_flv_high',
