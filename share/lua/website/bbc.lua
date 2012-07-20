@@ -155,7 +155,9 @@ function parse(self)
         
         -- in 'application', mp has a value containing one or more entries separated by strings.
         -- We only keep the first entry.
-        params.application = params.application:gsub("&mp=([^,&]+),?.-&", "&mp=%1&"))
+        if params.application then
+            params.application = params.application:gsub("&mp=([^,&]+),?.-&", "&mp=%1&")
+        end
 
         if params.supplier == 'akamai' then
             process_akamai(params)
