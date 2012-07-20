@@ -74,7 +74,7 @@ function parse(self)
         params.playpath = params.identifier
         params.application = params.application or 'ondemand'
         params.application = params.application .. '?_fcs_vhost=' .. params.server .. '&undefined'
-        params.uri = 'rtmp://' .. params.server .. ':1935/' .. params.application
+        params.uri = 'rtmp://' .. params.server .. ':80/' .. params.application
         if not params.authString:find("&aifp=") then
             params.authString = params.authString .. '&aifp=v001'
         end
