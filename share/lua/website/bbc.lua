@@ -112,6 +112,13 @@ function parse(self)
     local playlist = quvi.fetch(playlist_uri, {fetch_type = 'playlist'})
 
     local pl_item_p,_,s = playlist:find('<item kind="programme".-identifier="(.-)"')
+    if not s then
+        pl_item_p,_,s = playlist:find('<item kind="radioProgramme".-identifier="(.-)"')
+        -- TODO: Implement radio support
+        if s then
+            error('No support for radio yet')
+        end
+    end
     local media_id = s or error('no match: media id')
 
     local _,_,s = playlist:find('duration="(%d+)"', pl_item_p)
