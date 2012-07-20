@@ -143,7 +143,7 @@ function parse(self)
             break
         end
     end
-    if not media then error('couldn\'t parse the config') end
+    if not media then error("Couldn't parse the config") end
 
     self.url = {}
 
