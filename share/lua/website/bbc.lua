@@ -175,6 +175,26 @@ function parse(self)
         for _,param in pairs{'supplier', 'server', 'application', 'identifier', 'authString', 'kind'} do
             _,_,params[param] = connection:find(param .. '="(.-)"')
         end
+
+        -- Get authstring from more specific mediaselector if
+        -- this mode is specified - fails sometimes otherwise
+	if needs_new_authString(params) then
+	    local xml_url
+	    xml_uri =
+	        'http://www.bbc.co.uk/mediaselector/4/mtis/stream/' ..
+		media_id .. '/' .. mparams['service'] .. '/' .. params['kind'] ..
+		"?cb=" .. math.random(10000)
+	    xml = quvi.fetch(xml_uri, {fetch_type = 'config'})
+	    local _,_,new_authString = xml:find('authString="(.-)"')
+	    if new_authString then
+	        params['authString'] = new_authString:gsub('&amp;', '&')
+	    end
+        else
+            -- Unescape the authString
+            if params['authString'] then
+                params['authString'] = params['authString']:gsub('&amp;', '&')
+            end
+        end
         
         -- in 'application', mp has a value containing one or more entries separated by strings.
         -- We only keep the first entry.
