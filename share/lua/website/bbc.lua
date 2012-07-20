@@ -174,6 +174,7 @@ function parse(self)
 
         for _,param in pairs{'supplier', 'server', 'application', 'identifier', 'authString', 'kind'} do
             _,_,params[param] = connection:find(param .. '="(.-)"')
+            -- print ("CONNECTION: params[" .. param .. "] = " .. (params[param] or "(null)"))
         end
 
         -- Get authstring from more specific mediaselector if
