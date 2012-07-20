@@ -71,6 +71,7 @@ function parse(self)
     end
 
     function process_akamai(params)
+        params.playpath = params.identifier
         params.application = params.application or 'ondemand'
         params.application = params.application .. '?_fcs_vhost=' .. params.server .. '&undefined'
         params.uri = 'rtmp://' .. params.server .. ':1935/' .. params.application
@@ -81,7 +82,7 @@ function parse(self)
             params.identifier = params.identifier:gsub('^mp[34]:', '')
             params.authString = params.authString .. '&slist=' .. params.identifier
         end
-        params.identifier = params.identifier .. '?' .. params.authString
+        params.playpath = params.playpath .. '?' .. params.authString
         params.uri = params.uri .. '&' .. params.authString
         params.application = params.application .. '&' .. params.authString
         params.tcurl = 'rtmp://' .. params.server .. ':80/' .. params.application
@@ -91,12 +92,13 @@ function parse(self)
         create_uri_for_limelight_level3_iplayertok(params)
         params.application = params.application .. '&' .. params.authString
         params.tcurl = 'rtmp://' .. params.server .. ':1935/' .. params.application
+        params.playpath = params.identifier
     end
 
     function process_iplayertok(params)
         create_uri_for_limelight_level3_iplayertok(params)
         params.identifier = params.identifier .. '?' .. params.authString
-        params.identifier = params.identifier:gsub('^mp[34]:', '')
+        params.playpath = params.identifier:gsub('^mp[34]:', '')
         params.tcurl = 'rtmp://' .. params.server .. ':1935/' .. params.application
     end
 
@@ -214,7 +216,7 @@ function parse(self)
 
         complete_uri = params.uri
             .. ' app=' .. params.application
-            .. ' playpath=' .. params.identifier
+            .. ' playpath=' .. params.playpath
             .. ' swfUrl=http://www.bbc.co.uk/emp/revisions/18269_21576_10player.swf?revision=18269_21576 swfVfy=1'
         if params.tcurl then
             complete_uri = complete_uri .. ' tcUrl=' .. params.tcurl
