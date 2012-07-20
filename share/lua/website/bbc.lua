@@ -147,6 +147,13 @@ function parse(self)
 
     self.url = {}
 
+    -- Initialise with the default values from the media
+    local mparams = {}
+    for _,mparam in pairs{'kind', 'service'} do
+        _,_,mparams[mparam] = media:find(mparam .. '="(.-)"')
+        -- print ("MEDIA: mparams[" .. mparam .. "] = " .. mparams[mparam])
+    end
+
     for connection in media:gmatch('<connection .-/>') do
         local params, complete_uri = {}, ''
         for _,param in pairs{'supplier', 'server', 'application', 'identifier', 'authString'} do
